@@ -38,5 +38,17 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
         Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
         Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
+  
+  
+
+
+        Route::get('initiative',['as'=>'initiativeCRUD.index','uses'=>'InitiativesController@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+        Route::get('initiative/create',['as'=>'initiativeCRUD.create','uses'=>'InitiativesController@create','middleware' => ['permission:item-create']]);
+        Route::post('initiative/create',['as'=>'initiativeCRUD.store','uses'=>'InitiativesController@store','middleware' => ['permission:item-create']]);
+        Route::get('initiative/{id}',['as'=>'initiativeCRUD.show','uses'=>'InitiativesController@show']);
+        Route::get('initiative/{id}/edit',['as'=>'initiativeCRUD.edit','uses'=>'InitiativesController@edit','middleware' => ['permission:item-edit']]);
+        Route::patch('initiative/{id}',['as'=>'initiativeCRUD.update','uses'=>'InitiativesController@update','middleware' => ['permission:item-edit']]);
+        Route::delete('initiative/{id}',['as'=>'initiativeCRUD.destroy','uses'=>'InitiativesController@destroy','middleware' => ['permission:item-delete']]);
+  
     });
     
