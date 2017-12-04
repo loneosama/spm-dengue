@@ -4,11 +4,11 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Items CRUD</h2>
+	            <h2>Patients CRUD</h2>
 	        </div>
 	        <div class="pull-right">
-	        	@permission('item-create')
-	            <a class="btn btn-success" href="{{ route('initiativeCRUD.create') }}"> Create New Patient </a>
+	        	@permission('patient-create')
+	            <a class="btn btn-success" href="{{ route('patientCRUD.create') }}"> Create New Patient </a>
 	            @endpermission
 	        </div>
 	    </div>
@@ -22,20 +22,20 @@
 		<tr>
 			<th>No</th>
 			<th>Name</th>
-			<th>Description</th>
+			<th>Diagnosis</th>
 			<th width="280px">Action</th>
 		</tr>
 	@foreach ($items as $key => $item)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $item->title }}</td>
-		<td>{{ $item->description }}</td>
+		<td>{{ $item->first_name }} {{$item->last_name}}</td>
+		<td>{{ $item->diagnosed }}</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('patientCRUD.show',$item->patients_id) }}">Show</a>
-			@permission('item-edit')
+			@permission('patient-edit')
 			<a class="btn btn-primary" href="{{ route('patientCRUD.edit',$item->patients_id) }}">Edit</a>
 			@endpermission
-			@permission('item-delete')
+			@permission('patient-delete')
 			{!! Form::open(['method' => 'DELETE','route' => ['patientCRUD.destroy', $item->patients_id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}

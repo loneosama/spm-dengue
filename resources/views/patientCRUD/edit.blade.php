@@ -74,7 +74,23 @@
 			</div>
 		</div>
 
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<div class="form-group">
 
+
+				<strong>City:</strong>
+				{!! Form::select('city', $cities, array('class' => 'form-control')) !!}
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<div class="form-group">
+
+
+				<strong>District:</strong>
+				{!! Form::text('district', null, array('placeholder' => 'Diagnosed','class' => 'form-control')) !!}
+			</div>
+		</div>
+		
 		<div class="col-xs-6 col-sm-6 col-md-6">
 			<div class="form-group">
 
@@ -83,15 +99,15 @@
 				{!! Form::textarea('diagnosed', null, array('placeholder' => 'Diagnosed','class' => 'form-control','style'=>'height:100px')) !!}
 			</div>
 		</div>
+		
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<div class="form-group">
-
-				<strong>Previously Diagnosed:</strong>
-				{!! Form::checkbox('is_diagnosed_before',1) !!}
-
-			</div>
-		</div>
-
+            <div class="form-group">
+             
+			<strong>Has it been diagnosed before</strong>
+                Yes: {!! Form::radio('is_diagnosed_before', 1); !!}
+                No : {!! Form::radio('is_diagnosed_before',0)!!}   
+            </div>
+        </div>
 		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<button type="submit" class="btn btn-primary">Submit</button>
         </div>

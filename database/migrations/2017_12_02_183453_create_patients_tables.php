@@ -27,7 +27,7 @@ class CreatePatientsTables extends Migration
             $table->string('district');
             $table->text('diagnosed');
             $table->boolean('is_diagnosed_before');   
-           
+           $table->timestamps();
             
         });
    

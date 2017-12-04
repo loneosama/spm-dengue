@@ -17,7 +17,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Patient::orderBy('first_name','last_name','gender','email','dob','address','bloodgroup','city','district','diagnosed','is_diagnosed_before'
+        $items = Patient::orderBy('first_name','last_name','gender','contact','dob','address','bloodgroup','city','district','diagnosed','is_diagnosed_before'
 )->paginate(5);
         return view('patientCRUD.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -30,7 +30,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patientCRUD.create');
+        $cities =	['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'];                
+        return view('patientCRUD.create')->with('cities',$cities);
     }
 
     /**
@@ -41,14 +42,15 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $this->validate($request, 
 
-            ['first_name' => 'required', 'last_name' => 'required','gender' => 'required','email' => 'required',
-                'dob' => 'required','address'  => 'required' ,'bloodgroup'  => 'required','city'  => 'required','district'  => 'required','diagnosed'  => 'required' ,'is_diagnosed_before'  => 'required']
+            ['first_name' => 'required', 'last_name' => 'required','gender' => 'required',
+                'dob' => 'required','address'  => 'required' ,'bloodgroup'  => 'required'
+                ,'city'  => 'required','district'  => 'required','diagnosed'  => 'required' ]
 
 
-        ]);
-            
+        );
+        //var_dump()    
         Patient::create($request->all());
 
         return redirect()->route('patientCRUD.index')
@@ -63,8 +65,9 @@ class PatientController extends Controller
      */
     public function show($id)
     {
+        $cities =	['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'];        
         $item = Patient::find($id);
-        return view('patientCRUD.show',compact('item'));
+        return view('patientCRUD.show',compact(['item','cities']));
     }
 
     /**
@@ -75,8 +78,9 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
+        $cities =	['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'];                
         $item = Patient::find($id);
-        return view('patientCRUD.edit',compact('item'));
+        return view('patientCRUD.edit',compact(['item','cities']));
     }
 
     /**
@@ -88,10 +92,10 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            ['first_name' => 'required', 'last_name' => 'required','gender' => 'required','email' => 'required',
-                'dob' => 'required','address'  => 'required' ,'bloodgroup'  => 'required','city'  => 'required','district'  => 'required','diagnosed'  => 'required' ,'is_diagnosed_before'  => 'required']
-        ]);
+        $this->validate($request, 
+            ['first_name' => 'required', 'last_name' => 'required','gender' => 'required',
+                'dob' => 'required','address'  => 'required' ,'bloodgroup'  => 'required','city'  => 'required','district'  => 'required','diagnosed'  => 'required' ]
+        );
 
         Patient::find($id)->update($request->all());
 

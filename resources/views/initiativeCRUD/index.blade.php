@@ -4,10 +4,10 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Items CRUD</h2>
+	            <h2>Initiatives CRUD</h2>
 	        </div>
 	        <div class="pull-right">
-	        	@permission('item-create')
+	        	@permission('initiative-create')
 	            <a class="btn btn-success" href="{{ route('initiativeCRUD.create') }}"> Create New Item</a>
 	            @endpermission
 	        </div>
@@ -21,21 +21,25 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>No</th>
-			<th>Name</th>
-			<th>Description</th>
+			<th>Title</th>
+			<th>Location</th>
+			<th>Start Date</th>
+			<th>End Date</th>
 			<th width="280px">Action</th>
 		</tr>
 	@foreach ($items as $key => $item)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $item->title }}</td>
-		<td>{{ $item->description }}</td>
+		<td>{{ $item->name }}</td>
+		<td>{{ $cities[$item->location] }}</td>
+		<td>{{ $item->start_date}}</td>
+		<td>{{ $item->end_date}}</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('initiativeCRUD.show',$item->initiative_id) }}">Show</a>
-			@permission('item-edit')
+			@permission('initiative-edit')
 			<a class="btn btn-primary" href="{{ route('initiativeCRUD.edit',$item->initiative_id) }}">Edit</a>
 			@endpermission
-			@permission('item-delete')
+			@permission('initiative-delete')
 			{!! Form::open(['method' => 'DELETE','route' => ['initiativeCRUD.destroy', $item->initiative_id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}

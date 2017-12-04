@@ -72,6 +72,21 @@
                 {!! Form::text('address', null, array('placeholder' => ' address of patient','class' => 'form-control')) !!}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+             
+			<strong>City:</strong>
+                {!! Form::select('city',['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'],'khi') !!}
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>District:</strong>
+                {!! Form::text('district', null, array('placeholder' => 'district','class' => 'form-control')) !!}
+            </div>
+        </div>
+
+
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Contact Number:</strong>
@@ -87,6 +102,7 @@
         </div>
 
 
+
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
              
@@ -98,9 +114,10 @@
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
              
-			<strong>Previously Diagnosed:</strong>
-                {!! Form::checkbox('is_diagnosed_before',1) !!}
 
+			<strong>Has been diagnosed before:</strong>
+            Yes : {!! Form::radio('is_diagnosed_before', 1); !!}
+            No : {!! Form::radio('is_diagnosed_before',0)!!}   
             </div>
         </div>
 
