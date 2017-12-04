@@ -30,8 +30,10 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('roles.index') }}">Roles</a></li>
-                    <li><a href="{{ route('itemCRUD2.index') }}">Items</a></li>
+                    <!-- <li><a href="{{ route('itemCRUD2.index') }}">Items</a></li> -->
                     <li><a href="{{ route('initiativeCRUD.index') }}">Initiative</a></li>
+                    <li><a href="{{ route('patientCRUD.index') }}">Patient</a></li>
+                    <li><a href="{{ route('treatmentCRUD.index') }}">Treatment</a></li>
 
                 </ul>
                 <!-- Right Side Of Navbar -->

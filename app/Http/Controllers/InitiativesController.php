@@ -17,6 +17,8 @@ class InitiativesController extends Controller
      */
     public function index(Request $request)
     {
+        $cities =	['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'];
+        
         $items = Initiative::orderBy('name',
         'location',
         'description',
@@ -27,7 +29,7 @@ class InitiativesController extends Controller
         'donation_amount'
 )->paginate(5);
         return view('initiativeCRUD.index',compact('items'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 5)->with('cities',$cities);
     }
 
     /**
@@ -52,13 +54,12 @@ class InitiativesController extends Controller
             'name' => 'required',
             'location' => 'required',
             'description' => 'required',
-            'is_pre' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'conducted_by' => 'required',
             'donation_amount' => 'required',
-        ]);
-            
+            'is_pre' => 'required'
+        ]);            
         Initiative::create($request->all());
 
         return redirect()->route('initiativeCRUD.index')
@@ -73,8 +74,10 @@ class InitiativesController extends Controller
      */
     public function show($id)
     {
+        $cities =	['khi' => 'karachi','swl' => 'sahiwal','hyd' => 'hyderabad','mux' => 'multan','fbd' => 'faisalabad'];
+        
         $item = Initiative::find($id);
-        return view('initiativeCRUD.show',compact('item'));
+        return view('initiativeCRUD.show',compact(['item','cities']));
     }
 
     /**

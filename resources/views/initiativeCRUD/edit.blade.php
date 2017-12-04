@@ -46,13 +46,13 @@
             </div>
         </div>
 		<div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-             
-			<strong>Previously Initiative Taken?:</strong>
-                {!! Form::checkbox('is_pre',1) !!}
-
+        <div class="form-group">
+            <strong>Is this a Pre-Dengue Initiative?:</strong>
+                Pre : {!! Form::radio('is_pre', 1); !!}
+                Post : {!! Form::radio('is_pre',0)!!}   
             </div>
-        </div><div class="col-xs-6 col-sm-6 col-md-6">
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
              
 			<strong>Start Date:</strong>
@@ -74,7 +74,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
              
-			<strong>Donation amount:</strong>
+			<strong>Donation amount $:</strong>
                 {!! Form::number('donation_amount', null, array('placeholder' => 'Donation Amount','class' => 'form-control','style' =>'width:450px')) !!}
             </div>
         </div>

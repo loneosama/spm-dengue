@@ -21,7 +21,10 @@ class CreateTreatmentsTables extends Migration
             $table->string('treatment_type');
             $table->text('description');                       
             $table->text('origin');
-            $table->bool('is_foreign_doctor');
+            $table->string('dr_name');
+            $table->boolean('is_foreign_doctor');
+            $table->string('details');
+            
 
             $table->timestamps();
         });
